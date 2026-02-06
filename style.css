@@ -407,3 +407,126 @@
     100% { transform: scale(1); }
   }
   
+  .secretsTitle {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  
+  .secretsSubtitle {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .secretsGrid {
+    display: grid;
+    position: relative;
+    z-index: 10;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 600px;
+  }
+  
+  .secretHeart {
+    font-size: 56px;
+    cursor: pointer;
+    pointer-events: auto;   /* 👈 allow clicking */
+    z-index: 10;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    transition: 0.3s ease;
+    animation: heartPulse 1.6s ease-in-out infinite;
+  }
+  
+  .secretHeart:hover {
+    transform: scale(1.15);
+  }
+  
+  .spin {
+    animation: heartPulse 1.6s ease-in-out infinite, slowSpin 6s linear infinite;
+  }
+  
+  @keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  
+  .todayGlow {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.9), 0 0 40px rgba(255, 182, 193, 0.8);
+    background: rgba(255,255,255,0.6);
+  }
+  
+  .locked {
+    opacity: 0.4;
+    filter: grayscale(60%);
+  }
+  
+  /* Allow clicks on content inside pages */
+.page {
+  pointer-events: none;
+}
+
+.page > * {
+  pointer-events: auto;
+}
+
+/* Make sure secret hearts sit above overlays */
+#pageSecrets .secretsGrid,
+#pageSecrets .secretHeart {
+  position: relative;
+  z-index: 1001;
+}
+
+/* Background overlays must not block clicks */
+.hearts,
+body::after {
+  pointer-events: none;
+}
+
+.valentineGate {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 34px;
+  cursor: pointer;
+  user-select: none;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+
+  animation: heartPulse 1.6s ease-in-out infinite, floatHint 3s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 100;
+}
+
+.valentineGate:hover {
+  transform: scale(1.06);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.gateLabel {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: #6b2d5c;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.valentineGate.locked {
+  opacity: 0.7;
+  filter: grayscale(20%);
+}
+
+  
